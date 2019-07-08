@@ -15,7 +15,10 @@ func analyse(raw []byte) {
 	fmt.Printf("Počet slabik:\t%d\n", data.Slabiky())
 	fmt.Printf("Počet slov:\t%d\n", data.Words())
 	fmt.Printf("Počet vět:\t%d\n", data.Sentences())
-	fmt.Printf("Počet řádek\t%d\n", data.Lines())
+	fmt.Printf("Počet řádek:\t%d\n", data.Lines())
+	if fl {
+		fmt.Printf("Fleshův index:\t%f\n", data.Flesh())
+	}
 
 	if !ws {
 		data = analyza.Text(strings.Replace(string(data), " ", "", -1))
@@ -34,11 +37,13 @@ func analyse(raw []byte) {
 		data = analyza.Text(reg.ReplaceAllString(string(data), ""))
 		c = data.Chars()
 	}
-	fr := data.Frekvence()
-	Map := sort(fr)
-	fmt.Println("Frekvence znaků:")
-	for _, v := range Map {
-		pourcent := float64((100.0 * float64(v.val)) / float64(c))
-		fmt.Printf("%c:%d\t:%6.2f %%\n", v.key, v.val, pourcent)
+	if fr {
+		fr := data.Frekvence()
+		Map := sort(fr)
+		fmt.Println("Frekvence znaků:")
+		for _, v := range Map {
+			pourcent := float64((100.0 * float64(v.val)) / float64(c))
+			fmt.Printf("%c:%d\t:%6.2f %%\n", v.key, v.val, pourcent)
+		}
 	}
 }

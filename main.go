@@ -10,6 +10,8 @@ var ws bool
 var an bool
 var std bool
 var ad bool
+var fl bool
+var fr bool
 
 func main() {
 	var file string
@@ -19,6 +21,8 @@ func main() {
 	flag.BoolVar(&an, "a", true, "analyse file")
 	flag.BoolVar(&std, "std", false, "standart data")
 	flag.BoolVar(&ad, "ad", false, "only alpha-digit; also standart")
+	flag.BoolVar(&fl, "fl", false, "display Flesh index")
+	flag.BoolVar(&fr, "fr", true, "display frequency")
 	flag.Parse()
 	raw, err := ioutil.ReadFile(file)
 	if err != nil {
