@@ -32,6 +32,7 @@ func analyse(raw []byte) {
 			log.Fatal("Nelze zkompilovat regex!")
 		}
 		data = analyza.Text(reg.ReplaceAllString(string(data), ""))
+		c = data.Chars()
 	}
 	fr := data.Frekvence()
 	Map := sort(fr)
