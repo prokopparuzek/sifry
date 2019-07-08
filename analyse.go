@@ -15,9 +15,11 @@ func analyse(raw []byte) {
 	fmt.Printf("Počet vět:\t%d\n", data.Sentences())
 	fmt.Printf("Počet řádek\t%d\n", data.Lines())
 
-	data = analyza.Text(strings.Replace(string(data), " ", "", -1))
-	data = analyza.Text(strings.Replace(string(data), "\t", "", -1))
-	data = analyza.Text(strings.Replace(string(data), "\n", "", -1))
+	if !ws {
+		data = analyza.Text(strings.Replace(string(data), " ", "", -1))
+		data = analyza.Text(strings.Replace(string(data), "\t", "", -1))
+		data = analyza.Text(strings.Replace(string(data), "\n", "", -1))
+	}
 	fr := data.Frekvence()
 	Map := sort(fr)
 	fmt.Println("Frekvence znaků:")
