@@ -1,9 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"flag"
+	"io"
 	"io/ioutil"
 	"log"
+	"os"
 )
 
 var ws bool
@@ -15,6 +18,7 @@ var fr bool
 
 func main() {
 	var file string
+	var raw []byte
 
 	flag.StringVar(&file, "f", "", "file to analyse")
 	flag.BoolVar(&ws, "ws", false, "frequency with white spaces")
@@ -24,9 +28,21 @@ func main() {
 	flag.BoolVar(&fl, "fl", false, "display Flesh index")
 	flag.BoolVar(&fr, "fr", true, "display frequency")
 	flag.Parse()
-	raw, err := ioutil.ReadFile(file)
-	if err != nil {
-		log.Fatal("Nelze přečíst soubor")
+	if file == "" || file == "-" {
+		reader := bufio.NewReader(os.Stdin)
+		for {
+			b, err := reader.ReadByte()
+			if err == io.EOF {
+				break
+			}
+			raw = append(raw, b)
+		}
+	} else {
+		var err error
+		raw, err = ioutil.ReadFile(file)
+		if err != nil {
+			log.Fatal("Nelze přečíst soubor")
+		}
 	}
 	if an {
 		analyse(raw)

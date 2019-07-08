@@ -26,10 +26,10 @@ func analyse(raw []byte) {
 		data = analyza.Text(strings.Replace(string(data), "\n", "", -1))
 		c = data.Chars()
 	}
-	if std || an {
+	if std {
 		data = data.Stdr()
 	}
-	if an {
+	if ad {
 		reg, err := regexp.Compile("[^A-Za-z0-9]+")
 		if err != nil {
 			log.Fatal("Nelze zkompilovat regex!")
@@ -38,9 +38,9 @@ func analyse(raw []byte) {
 		c = data.Chars()
 	}
 	if fr {
-		fr := data.Frekvence()
-		Map := sort(fr)
-		fmt.Println("Frekvence znaků:")
+		fre := data.Frekvence()
+		Map := sort(fre)
+		fmt.Println("frekvence znaků:")
 		for _, v := range Map {
 			pourcent := float64((100.0 * float64(v.val)) / float64(c))
 			fmt.Printf("%c:%d\t:%6.2f %%\n", v.key, v.val, pourcent)
