@@ -16,9 +16,9 @@ func analyse(raw []byte) {
 		fmt.Printf("Počet slov:\t%d\n", data.Words())
 		fmt.Printf("Počet vět:\t%d\n", data.Sentences())
 		fmt.Printf("Počet řádek:\t%d\n", data.Lines())
-	}
-	if fl { // Fleshův index
-		fmt.Printf("Fleshův index:\t%f\n", data.Flesh())
+		if fl { // Fleshův index
+			fmt.Printf("Fleshův index:\t%f\n", data.Flesh())
+		}
 	}
 	if std { // Standartizace textu, pouze malá bez interpunkce
 		data = data.Stdr()
