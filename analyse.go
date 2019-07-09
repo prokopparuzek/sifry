@@ -21,7 +21,7 @@ func analyse(raw []byte, data analyza.Text) {
 	}
 	if fw { // Frekvence slov
 		fre := data.FrekvenceSlov()
-		Map := sortW(fre)
+		Map := sort(fre)
 		fmt.Println("frekvence slov:")
 		for _, v := range Map {
 			pourcent := float64((100.0 * float64(v.val)) / float64(w))
@@ -36,7 +36,7 @@ func analyse(raw []byte, data analyza.Text) {
 		fmt.Println("frekvence znaků:")
 		for _, v := range Map {
 			pourcent := float64((100.0 * float64(v.val)) / float64(c))
-			fmt.Printf("%c:%d\t:%6.2f %%\n", v.key, v.val, pourcent)
+			fmt.Printf("%s:%d\t:%6.2f %%\n", v.key, v.val, pourcent)
 		}
 	}
 }
