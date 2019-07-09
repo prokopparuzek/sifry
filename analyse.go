@@ -2,10 +2,7 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"prokop/sifry/analyza"
-	"regexp"
-	"strings"
 )
 
 func analyse(raw []byte) {
@@ -21,20 +18,14 @@ func analyse(raw []byte) {
 	}
 
 	if !ws {
-		data = analyza.Text(strings.Replace(string(data), " ", "", -1))
-		data = analyza.Text(strings.Replace(string(data), "\t", "", -1))
-		data = analyza.Text(strings.Replace(string(data), "\n", "", -1))
+		data.RemoveWS()
 		c = data.Chars()
 	}
 	if std {
 		data = data.Stdr()
 	}
 	if ad {
-		reg, err := regexp.Compile("[^A-Za-z0-9]+")
-		if err != nil {
-			log.Fatal("Nelze zkompilovat regex!")
-		}
-		data = analyza.Text(reg.ReplaceAllString(string(data), ""))
+		data.AlphaD()
 		c = data.Chars()
 	}
 	if fr {
