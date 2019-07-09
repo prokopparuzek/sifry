@@ -23,6 +23,10 @@ func analyse(raw []byte) {
 	if std { // Standartizace textu, pouze malá bez interpunkce
 		data = data.Stdr()
 	}
+	if ad { // Pouze alfanumerické znaky
+		data.AlphaD()
+		c = data.Chars()
+	}
 	if fw { // Frekvence slov
 		fre := data.FrekvenceSlov()
 		Map := sortW(fre)
@@ -34,10 +38,6 @@ func analyse(raw []byte) {
 	}
 	if !ws { // Odstranění bílých znaků
 		data.RemoveWS()
-		c = data.Chars()
-	}
-	if ad { // Pouze alfanumerické znaky
-		data.AlphaD()
 		c = data.Chars()
 	}
 	if fr { // frekvence znaků
