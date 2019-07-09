@@ -6,13 +6,16 @@ import (
 )
 
 func analyse(raw []byte) {
+	var c uint64
 	data := analyza.Text(raw)
-	c := data.Chars()
-	fmt.Printf("Počet znaků:\t%d\n", c)
-	fmt.Printf("Počet slabik:\t%d\n", data.Slabiky())
-	fmt.Printf("Počet slov:\t%d\n", data.Words())
-	fmt.Printf("Počet vět:\t%d\n", data.Sentences())
-	fmt.Printf("Počet řádek:\t%d\n", data.Lines())
+	if st {
+		c = data.Chars()
+		fmt.Printf("Počet znaků:\t%d\n", c)
+		fmt.Printf("Počet slabik:\t%d\n", data.Slabiky())
+		fmt.Printf("Počet slov:\t%d\n", data.Words())
+		fmt.Printf("Počet vět:\t%d\n", data.Sentences())
+		fmt.Printf("Počet řádek:\t%d\n", data.Lines())
+	}
 	if fl {
 		fmt.Printf("Fleshův index:\t%f\n", data.Flesh())
 	}
