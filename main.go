@@ -59,11 +59,12 @@ func main() {
 			log.Fatal("Nelze přečíst soubor")
 		}
 	}
+	data := analyza.Text(raw)
+	trim(&data)
 	if an {
-		analyse(raw)
+		analyse(raw, data)
 	}
 	if re {
-		data := analyza.Text(raw)
 		var w bool
 		if what == "words" {
 			w = true

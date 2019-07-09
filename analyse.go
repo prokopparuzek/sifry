@@ -5,9 +5,8 @@ import (
 	"prokop/sifry/analyza"
 )
 
-func analyse(raw []byte) {
+func analyse(raw []byte, data analyza.Text) {
 	var c uint64
-	data := analyza.Text(raw)
 	w := data.Words()
 	if st { // Statistiky textu
 		c = data.Chars()
@@ -20,13 +19,6 @@ func analyse(raw []byte) {
 			fmt.Printf("Fleshův index:\t%f\n", data.Flesh())
 		}
 	}
-	if std { // Standartizace textu, pouze malá bez interpunkce
-		data = data.Stdr()
-	}
-	if ad { // Pouze alfanumerické znaky
-		data.AlphaD()
-		c = data.Chars()
-	}
 	if fw { // Frekvence slov
 		fre := data.FrekvenceSlov()
 		Map := sortW(fre)
@@ -36,10 +28,8 @@ func analyse(raw []byte) {
 			fmt.Printf("%8s\t:%d\t:%6.2f %%\n", v.key, v.val, pourcent)
 		}
 	}
-	if !ws { // Odstranění bílých znaků
-		data.RemoveWS()
-		c = data.Chars()
-	}
+	trimSpace(&data)
+	c = data.Chars()
 	if fr { // frekvence znaků
 		fre := data.Frekvence()
 		Map := sort(fre)
