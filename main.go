@@ -16,6 +16,7 @@ var ad bool
 var fl bool
 var fr bool
 var st bool
+var fw bool
 
 func main() {
 	var file string
@@ -28,6 +29,7 @@ func main() {
 	flag.BoolVar(&ad, "ad", false, "only alpha-digit; also standart")
 	flag.BoolVar(&fl, "fl", false, "display Flesh index")
 	flag.BoolVar(&fr, "fr", true, "display frequency")
+	flag.BoolVar(&fw, "fw", false, "display frequency of words")
 	flag.BoolVar(&st, "st", true, "display statistiques")
 	flag.Parse()
 	if file == "" || file == "-" {
