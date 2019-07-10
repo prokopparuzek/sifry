@@ -1,20 +1,20 @@
 package main
 
 import (
-	"prokop/sifry/analyza"
+	"prokop/sifry/change"
 )
 
-func trim(data *analyza.Text) {
+func trim(data *string) {
 	if std { // Standartizace textu, pouze malá bez interpunkce
-		*data = data.Stdr()
+		change.Stdr(data)
 	}
 	if ad { // Pouze alfanumerické znaky
-		data.AlphaD()
+		change.AlphaD(data)
 	}
 }
 
-func trimSpace(data *analyza.Text) {
+func trimSpace(data *string) {
 	if !ws { // Odstranění bílých znaků
-		data.RemoveWS()
+		change.RemoveWS(data)
 	}
 }

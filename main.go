@@ -59,10 +59,10 @@ func main() {
 			log.Fatal("Nelze přečíst soubor")
 		}
 	}
-	data := analyza.Text(raw)
+	data := string(raw)
 	trim(&data)
 	if an {
-		analyse(raw, data)
+		analyse(&data)
 	}
 	if re {
 		var w bool
@@ -73,6 +73,6 @@ func main() {
 		} else {
 			log.Fatal("Pozor words || chars")
 		}
-		fmt.Printf("%s\n", strings.TrimSpace(data.Reproduct(w, uint64(combien), uint64(lenght))))
+		fmt.Printf("%s\n", strings.TrimSpace(analyza.Reproduct(&data, w, uint64(combien), uint64(lenght))))
 	}
 }

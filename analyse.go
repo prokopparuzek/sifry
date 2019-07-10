@@ -5,22 +5,22 @@ import (
 	"prokop/sifry/analyza"
 )
 
-func analyse(raw []byte, data analyza.Text) {
+func analyse(data *string) {
 	var c uint64
-	w := data.Words()
+	w := analyza.Words(data)
 	if st { // Statistiky textu
-		c = data.Chars()
+		c = analyza.Chars(data)
 		fmt.Printf("Počet znaků:\t%d\n", c)
-		fmt.Printf("Počet slabik:\t%d\n", data.Slabiky())
-		fmt.Printf("Počet slov:\t%d\n", data.Words())
-		fmt.Printf("Počet vět:\t%d\n", data.Sentences())
-		fmt.Printf("Počet řádek:\t%d\n", data.Lines())
+		fmt.Printf("Počet slabik:\t%d\n", analyza.Slabiky(*data))
+		fmt.Printf("Počet slov:\t%d\n", analyza.Words(data))
+		fmt.Printf("Počet vět:\t%d\n", analyza.Sentences(data))
+		fmt.Printf("Počet řádek:\t%d\n", analyza.Lines(data))
 		if fl { // Fleshův index
-			fmt.Printf("Fleshův index:\t%f\n", data.Flesh())
+			fmt.Printf("Fleshův index:\t%f\n", analyza.Flesh(data))
 		}
 	}
 	if fw { // Frekvence slov
-		fre := data.FrekvenceSlov()
+		fre := analyza.FrekvenceSlov(data)
 		Map := sort(fre)
 		fmt.Println("frekvence slov:")
 		for _, v := range Map {
@@ -28,10 +28,10 @@ func analyse(raw []byte, data analyza.Text) {
 			fmt.Printf("%8s\t:%d\t:%6.2f %%\n", v.key, v.val, pourcent)
 		}
 	}
-	trimSpace(&data)
-	c = data.Chars()
+	trimSpace(data)
+	c = analyza.Chars(data)
 	if fr { // frekvence znaků
-		fre := data.Frekvence()
+		fre := analyza.Frekvence(data)
 		Map := sort(fre)
 		fmt.Println("frekvence znaků:")
 		for _, v := range Map {
