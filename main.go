@@ -9,6 +9,7 @@ import (
 	"log"
 	"os"
 	"prokop/sifry/analyza"
+	"prokop/sifry/crypt"
 	"strings"
 )
 
@@ -24,6 +25,10 @@ var re bool
 var what string
 var combien int64
 var lenght int64
+var ciphre string
+var height uint64
+var weight uint64
+var decrypt bool
 
 func main() {
 	var file string
@@ -40,8 +45,12 @@ func main() {
 	flag.BoolVar(&st, "st", true, "display statistiques")
 	flag.BoolVar(&re, "re", false, "reproduct text")
 	flag.StringVar(&what, "what", "words", "words || chars")
-	flag.Int64Var(&combien, "c", 1, "how many words || chars")
+	flag.Int64Var(&combien, "cmb", 1, "how many words || chars")
 	flag.Int64Var(&lenght, "l", 0, "lenght of text")
+	flag.StringVar(&ciphre, "c", "", "what ciphre")
+	flag.Uint64Var(&weight, "w", 0, "weight of rectangle")
+	flag.Uint64Var(&height, "h", 0, "height of rectangle")
+	flag.BoolVar(&decrypt, "d", false, "crypt || decrypt")
 	flag.Parse()
 	if file == "" || file == "-" {
 		reader := bufio.NewReader(os.Stdin)
@@ -74,5 +83,25 @@ func main() {
 			log.Fatal("Pozor words || chars")
 		}
 		fmt.Printf("%s\n", strings.TrimSpace(analyza.Reproduct(&data, w, uint64(combien), uint64(lenght))))
+	}
+	switch ciphre {
+	case "RectangleL":
+		if !decrypt {
+			r := crypt.Rectangle{weight, height}
+			fmt.Printf("%s", r.CryptL(&data))
+		} else {
+			r := crypt.Rectangle{weight, height}
+			fmt.Printf("%s\n", r.DecryptL(&data))
+		}
+	case "RectangleR":
+		if !decrypt {
+			r := crypt.Rectangle{weight, height}
+			fmt.Printf("%s", r.CryptR(&data))
+		} else {
+			r := crypt.Rectangle{weight, height}
+			fmt.Printf("%s\n", r.DecryptR(&data))
+		}
+	case "Reverse":
+		fmt.Printf("%s", crypt.Reverse(&data))
 	}
 }
