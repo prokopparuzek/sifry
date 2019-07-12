@@ -48,8 +48,8 @@ func main() {
 	flag.Int64Var(&combien, "cmb", 1, "how many words || chars")
 	flag.Int64Var(&lenght, "l", 0, "lenght of text")
 	flag.StringVar(&ciphre, "c", "", "what ciphre")
-	flag.Uint64Var(&weight, "w", 0, "weight of rectangle")
-	flag.Uint64Var(&height, "h", 0, "height of rectangle")
+	flag.Uint64Var(&weight, "w", 0, "weight")
+	flag.Uint64Var(&height, "h", 0, "height")
 	flag.BoolVar(&decrypt, "d", false, "crypt || decrypt")
 	flag.Parse()
 	if file == "" || file == "-" {
@@ -103,5 +103,23 @@ func main() {
 		}
 	case "Reverse":
 		fmt.Printf("%s", crypt.Reverse(&data))
+	case "Teeth":
+		if !decrypt {
+			r := crypt.Teeth(height)
+			fmt.Printf("%s", r.Crypt(&data))
+		} else {
+			r := crypt.Teeth(height)
+			fmt.Printf("%s\n", r.Decrypt(&data))
+		}
+	case "Stairs":
+		if !decrypt {
+			r := crypt.Stairs(weight)
+			fmt.Printf("%s\n", r.Crypt(&data))
+		} else {
+			r := crypt.Stairs(weight)
+			fmt.Printf("%s\n", r.Decrypt(&data))
+		}
+	default:
+		log.Fatal("Nenalezená šifra!")
 	}
 }
