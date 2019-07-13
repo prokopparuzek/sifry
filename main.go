@@ -119,6 +119,14 @@ func main() {
 			r := crypt.Stairs(weight)
 			fmt.Printf("%s\n", r.Decrypt(&data))
 		}
+	case "Snake":
+		if !decrypt {
+			r := crypt.Snake(height)
+			fmt.Printf("%s", r.Crypt(&data))
+		} else {
+			r := crypt.Snake(height)
+			fmt.Printf("%s\n", r.Decrypt(&data))
+		}
 	default:
 		log.Fatal("Nenalezená šifra!")
 	}
