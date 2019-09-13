@@ -8,8 +8,8 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"prokop/sifry/analyza"
-	"prokop/sifry/crypt"
+	"github.com/prokopparuzek/sifry_lib/analyza"
+	"github.com/prokopparuzek/sifry_lib/change"
 	"strings"
 )
 

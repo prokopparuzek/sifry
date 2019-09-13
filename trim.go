@@ -1,7 +1,7 @@
 package main
 
 import (
-	"prokop/sifry/change"
+	"github.com/prokopparuzek/sifry_lib/change"
 )
 
 func trim(data *string) {

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"prokop/sifry/analyza"
+	"github.com/prokopparuzek/sifry_lib/analyza"
 )
 
 func analyse(data *string) {
