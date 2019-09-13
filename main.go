@@ -9,7 +9,7 @@ import (
 	"log"
 	"os"
 	"github.com/prokopparuzek/sifry_lib/analyza"
-	"github.com/prokopparuzek/sifry_lib/change"
+	"github.com/prokopparuzek/sifry_lib/crypt"
 	"strings"
 )
 
