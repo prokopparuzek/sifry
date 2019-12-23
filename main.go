@@ -4,12 +4,12 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
+	"github.com/prokopparuzek/sifry_lib/analyza"
+	"github.com/prokopparuzek/sifry_lib/crypt"
 	"io"
 	"io/ioutil"
 	"log"
 	"os"
-	"github.com/prokopparuzek/sifry_lib/analyza"
-	"github.com/prokopparuzek/sifry_lib/crypt"
 	"strings"
 )
 
@@ -72,8 +72,7 @@ func main() {
 	trim(&data)
 	if an {
 		analyse(&data)
-	}
-	if re {
+	} else if re {
 		var w bool
 		if what == "words" {
 			w = true
@@ -83,59 +82,60 @@ func main() {
 			log.Fatal("Pozor words || chars")
 		}
 		fmt.Printf("%s\n", strings.TrimSpace(analyza.Reproduct(&data, w, uint64(combien), uint64(lenght))))
-	}
-	switch ciphre {
-	case "RectangleL":
-		if !decrypt {
-			r := crypt.Rectangle{weight, height}
-			fmt.Printf("%s", r.CryptL(&data))
-		} else {
-			r := crypt.Rectangle{weight, height}
-			fmt.Printf("%s\n", r.DecryptL(&data))
+	} else {
+		switch ciphre {
+		case "RectangleL":
+			if !decrypt {
+				r := crypt.Rectangle{weight, height}
+				fmt.Printf("%s", r.CryptL(&data))
+			} else {
+				r := crypt.Rectangle{weight, height}
+				fmt.Printf("%s\n", r.DecryptL(&data))
+			}
+		case "RectangleR":
+			if !decrypt {
+				r := crypt.Rectangle{weight, height}
+				fmt.Printf("%s", r.CryptR(&data))
+			} else {
+				r := crypt.Rectangle{weight, height}
+				fmt.Printf("%s\n", r.DecryptR(&data))
+			}
+		case "Reverse":
+			fmt.Printf("%s", crypt.Reverse(&data))
+		case "Teeth":
+			if !decrypt {
+				r := crypt.Teeth(height)
+				fmt.Printf("%s", r.Crypt(&data))
+			} else {
+				r := crypt.Teeth(height)
+				fmt.Printf("%s\n", r.Decrypt(&data))
+			}
+		case "Stairs":
+			if !decrypt {
+				r := crypt.Stairs(weight)
+				fmt.Printf("%s\n", r.Crypt(&data))
+			} else {
+				r := crypt.Stairs(weight)
+				fmt.Printf("%s\n", r.Decrypt(&data))
+			}
+		case "Snake":
+			if !decrypt {
+				r := crypt.Snake(height)
+				fmt.Printf("%s", r.Crypt(&data))
+			} else {
+				r := crypt.Snake(height)
+				fmt.Printf("%s\n", r.Decrypt(&data))
+			}
+		case "JumpNS":
+			if !decrypt {
+				r := crypt.Jump(height)
+				fmt.Printf("%s\n", r.CryptNS(&data))
+			} else {
+				r := crypt.Jump(height)
+				fmt.Printf("%s\n", r.DecryptNS(&data))
+			}
+		default:
+			log.Fatal("Nenalezená šifra!")
 		}
-	case "RectangleR":
-		if !decrypt {
-			r := crypt.Rectangle{weight, height}
-			fmt.Printf("%s", r.CryptR(&data))
-		} else {
-			r := crypt.Rectangle{weight, height}
-			fmt.Printf("%s\n", r.DecryptR(&data))
-		}
-	case "Reverse":
-		fmt.Printf("%s", crypt.Reverse(&data))
-	case "Teeth":
-		if !decrypt {
-			r := crypt.Teeth(height)
-			fmt.Printf("%s", r.Crypt(&data))
-		} else {
-			r := crypt.Teeth(height)
-			fmt.Printf("%s\n", r.Decrypt(&data))
-		}
-	case "Stairs":
-		if !decrypt {
-			r := crypt.Stairs(weight)
-			fmt.Printf("%s\n", r.Crypt(&data))
-		} else {
-			r := crypt.Stairs(weight)
-			fmt.Printf("%s\n", r.Decrypt(&data))
-		}
-	case "Snake":
-		if !decrypt {
-			r := crypt.Snake(height)
-			fmt.Printf("%s", r.Crypt(&data))
-		} else {
-			r := crypt.Snake(height)
-			fmt.Printf("%s\n", r.Decrypt(&data))
-		}
-	case "JumpNS":
-		if !decrypt {
-			r := crypt.Jump(height)
-			fmt.Printf("%s\n", r.CryptNS(&data))
-		} else {
-			r := crypt.Jump(height)
-			fmt.Printf("%s\n", r.DecryptNS(&data))
-		}
-	default:
-		log.Fatal("Nenalezená šifra!")
 	}
 }
