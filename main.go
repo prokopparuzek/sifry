@@ -4,13 +4,14 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
-	"github.com/prokopparuzek/sifry_lib/analyza"
-	"github.com/prokopparuzek/sifry_lib/crypt"
 	"io"
 	"io/ioutil"
 	"log"
 	"os"
 	"strings"
+
+	"github.com/prokopparuzek/sifry_lib/analyza"
+	"github.com/prokopparuzek/sifry_lib/crypt"
 )
 
 var ws bool
@@ -27,7 +28,7 @@ var combien int64
 var lenght int64
 var ciphre string
 var height uint64
-var weight uint64
+var width uint64
 var decrypt bool
 
 func main() {
@@ -48,7 +49,7 @@ func main() {
 	flag.Int64Var(&combien, "cmb", 1, "how many words || chars")
 	flag.Int64Var(&lenght, "l", 0, "lenght of text")
 	flag.StringVar(&ciphre, "c", "", "what ciphre")
-	flag.Uint64Var(&weight, "w", 0, "weight")
+	flag.Uint64Var(&width, "w", 0, "width")
 	flag.Uint64Var(&height, "h", 0, "height")
 	flag.BoolVar(&decrypt, "d", false, "crypt || decrypt")
 	flag.Parse()
@@ -86,18 +87,18 @@ func main() {
 		switch ciphre {
 		case "RectangleL":
 			if !decrypt {
-				r := crypt.Rectangle{weight, height}
+				r := crypt.Rectangle{Width: width, Height: height}
 				fmt.Printf("%s", r.CryptL(&data))
 			} else {
-				r := crypt.Rectangle{weight, height}
+				r := crypt.Rectangle{Width: width, Height: height}
 				fmt.Printf("%s\n", r.DecryptL(&data))
 			}
 		case "RectangleR":
 			if !decrypt {
-				r := crypt.Rectangle{weight, height}
+				r := crypt.Rectangle{Width: width, Height: height}
 				fmt.Printf("%s", r.CryptR(&data))
 			} else {
-				r := crypt.Rectangle{weight, height}
+				r := crypt.Rectangle{Width: width, Height: height}
 				fmt.Printf("%s\n", r.DecryptR(&data))
 			}
 		case "Reverse":
@@ -112,10 +113,10 @@ func main() {
 			}
 		case "Stairs":
 			if !decrypt {
-				r := crypt.Stairs(weight)
+				r := crypt.Stairs(width)
 				fmt.Printf("%s\n", r.Crypt(&data))
 			} else {
-				r := crypt.Stairs(weight)
+				r := crypt.Stairs(width)
 				fmt.Printf("%s\n", r.Decrypt(&data))
 			}
 		case "Snake":

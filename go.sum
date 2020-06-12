@@ -1,0 +1,7 @@
+github.com/prokopparuzek/sifry_lib v0.0.0-20200101124055-1d20e78834d1 h1:uN8OfBFmitaYXUAGek3f4CBEhNw0BOnhhyp2F0/bp+A=
+github.com/prokopparuzek/sifry_lib v0.0.0-20200101124055-1d20e78834d1/go.mod h1:qKTn3whPtVtJRxnCjggmzEWrQm8LrkRcUkFRO0VU2TI=
+github.com/prokopparuzek/sifry_lib v0.0.0-20200612072655-638fb5b56d5f h1:rRYxKEiXl43elFC5nXFJ9WzIp1zjqxnQrgwABb2TUOg=
+github.com/prokopparuzek/sifry_lib v0.0.0-20200612072655-638fb5b56d5f/go.mod h1:/W7Xgs31RkuCfBW68g3iBi+gs7KXt3lH5no0g3vxMkM=
+golang.org/x/text v0.3.2 h1:tW2bmiBqwgJj/UpqtC8EpXEZVYOwU0yG4iWbprSVAcs=
+golang.org/x/text v0.3.2/go.mod h1:bEr9sfX3Q8Zfm5fL9x+3itogRgK3+ptLWKqgva+5dAk=
+golang.org/x/tools v0.0.0-20180917221912-90fa682c2a6e/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
